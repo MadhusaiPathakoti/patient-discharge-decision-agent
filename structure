@@ -1,0 +1,64 @@
+patient-discharge-decision-agent/
+│
+├── app/
+│   ├── main.py                     # FastAPI entry point
+│   │
+│   ├── api/
+│   │   └── v1/
+│   │       ├── routes.py            # /decide-discharge endpoint
+│   │
+│   ├── core/
+│   │   ├── config.py                # Environment variables & settings
+│   │   ├── logger.py                # Centralized logging
+│   │
+│   ├── models/
+│   │   ├── ml/
+│   │   │   ├── readmission_model.py # ML prediction logic
+│   │   │   ├── features.py          # Feature engineering
+│   │   │   └── artifacts/
+│   │   │       └── model.pkl        # Trained ML model
+│   │   │
+│   │   └── schemas.py               # Pydantic request/response models
+│   │
+│   ├── decision_engine/
+│   │   ├── rules.py                 # Clinical & operational rules
+│   │   ├── composer.py              # Final decision logic
+│   │   └── explainer.py              # Explanation generator
+│   │
+│   ├── services/
+│   │   ├── discharge_service.py     # Orchestrates full decision flow
+│   │   └── feedback_service.py      # Stores outcomes & overrides
+│   │
+│   ├── repositories/
+│   │   └── decision_repository.py   # DB interactions
+│   │
+│   └── utils/
+│       ├── validators.py            # Input validation helpers
+│       └── enums.py                 # Decision enums
+│
+├── data/
+│   ├── raw/                         # Original datasets
+│   ├── processed/                  # Cleaned datasets
+│   └── synthetic/                  # Generated patient data
+│
+├── notebooks/
+│   ├── data_exploration.ipynb
+│   ├── feature_engineering.ipynb
+│   └── model_training.ipynb
+│
+├── tests/
+│   ├── test_rules.py
+│   ├── test_decision_engine.py
+│   └── test_api.py
+│
+├── scripts/
+│   ├── generate_synthetic_data.py
+│   └── train_model.py
+│
+├── docker/
+│   └── Dockerfile
+│
+├── requirements.txt
+├── .env.example
+├── .gitignore
+├── README.md
