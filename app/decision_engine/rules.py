@@ -37,8 +37,9 @@ def evaluate_rules(patient) -> Dict:
             "passed": patient.days_admitted >= 2,
             "value": patient.days_admitted,
             "threshold": 2,
-            "severity": "INFO"
+            "severity": "WARNING"
         }
+
     }
 
     return results

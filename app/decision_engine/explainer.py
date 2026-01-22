@@ -1,3 +1,4 @@
+"""
 def generate_explanations(
     risk_score: float,
     rule_results: dict,
@@ -35,6 +36,51 @@ def generate_explanations(
     explanations.append(
         f"Predicted readmission risk score: {round(risk_score, 2)}"
     )
+
+    # Decision reasoning
+    if decision == "ESCALATE_TO_DOCTOR":
+        explanations.append(
+            "Decision escalated due to combined clinical and model risk"
+        )
+
+    return explanations
+"""
+
+def generate_explanations(
+    risk_score: float,
+    rule_results: dict,
+    decision: str,
+    model_meta: dict
+) -> list:
+    explanations = []
+
+    # Rule explanations
+    for rule, data in rule_results.items():
+        if not data["passed"]:
+            explanations.append(
+                f"{rule.replace('_', ' ').title()} violated "
+                f"(value: {data['value']}, threshold: {data['threshold']})"
+            )
+
+    # Risk summary
+    if risk_score >= 0.7:
+        explanations.append(f"High predicted readmission risk ({round(risk_score, 2)})")
+    elif 0.4 <= risk_score < 0.7:
+        explanations.append(f"Moderate readmission risk ({round(risk_score, 2)})")
+    else:
+        explanations.append(f"Low predicted readmission risk ({round(risk_score, 2)})")
+
+    # Model governance explanation
+    model_used = model_meta.get("model_used", "unknown")
+
+    if model_used == "ensemble_safe_mode":
+        explanations.append(
+            "Model disagreement detected, conservative risk applied"
+        )
+    else:
+        explanations.append(
+            f"Decision driven primarily by {model_used} model"
+        )
 
     # Decision reasoning
     if decision == "ESCALATE_TO_DOCTOR":
