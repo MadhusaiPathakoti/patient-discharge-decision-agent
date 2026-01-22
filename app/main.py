@@ -1,7 +1,9 @@
+from app.core.startup import ensure_models
 from fastapi import FastAPI
 from app.api.v1.routes import router
 from app.core.logger import setup_logger
 
+ensure_models()
 setup_logger()
 
 app = FastAPI(

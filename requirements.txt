@@ -7,3 +7,12 @@ shap
 matplotlib
 numpy
 xgboost
+pandas
+numpy
+joblib
+
+# Optional (if you still use SHAP anywhere)
+# shap
+
+# UI (only if backend also uses streamlit, otherwise keep UI separate)
+# streamlit
