@@ -1,15 +1,15 @@
 import os
 
-from scripts.generate_synthetic_data import generate_dataset
-from scripts.train_models import train_and_evaluate
+from app.mlops.generate_synthetic_data import generate_dataset
+from app.mlops.train_models import train_and_evaluate
 
 
 def ensure_models():
-    # Ensure data directory exists
+    # Ensure directories exist
     os.makedirs("data/synthetic", exist_ok=True)
     os.makedirs("app/models/ml/artifacts", exist_ok=True)
 
-    # Step 1: Ensure synthetic data exists
+    # Ensure synthetic data
     data_path = "data/synthetic/patient_readmission_data.csv"
     if not os.path.exists(data_path):
         print("Synthetic data not found. Generating...")
@@ -18,7 +18,7 @@ def ensure_models():
     else:
         print("Synthetic data found. Skipping generation.")
 
-    # Step 2: Ensure models exist
+    # Ensure models
     xgb_path = "app/models/ml/artifacts/xgboost.pkl"
     if not os.path.exists(xgb_path):
         print("Model artifacts not found. Training models...")
