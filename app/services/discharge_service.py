@@ -6,8 +6,8 @@ from app.decision_engine.explainer import generate_explanations
 
 
 class DischargeService:
-
     def __init__(self):
+        # Do NOT trigger model loading here
         self.registry = ModelRegistry()
 
     def make_decision(self, patient):
@@ -32,6 +32,5 @@ class DischargeService:
             "risk_score": risk_score,
             "model_used": selection["model_used"],
             "confidence": decision_data["confidence"],
-            "model_predictions": model_preds,
-            "explanations": explanations
+            "explanations": explanations,
         }

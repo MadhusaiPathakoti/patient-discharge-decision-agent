@@ -7,11 +7,13 @@ from app.models.ml.features import build_features
 class ModelRegistry:
     def __init__(self):
         self.models = {}
-        self._load_models()
+        self.loaded = False
 
     def _load_models(self):
-        base_path = "app/models/ml/artifacts"
+        if self.loaded:
+            return
 
+        base_path = "app/models/ml/artifacts"
         model_paths = {
             "xgboost": f"{base_path}/xgboost.pkl",
             "logistic": f"{base_path}/logistic_regression.pkl",
@@ -23,9 +25,13 @@ class ModelRegistry:
 
             self.models[name] = joblib.load(path)
 
+        self.loaded = True
         print(f"Loaded models: {list(self.models.keys())}")
 
     def predict_all(self, patient):
+        # Lazy load here
+        self._load_models()
+
         features = np.array([build_features(patient)])
         predictions = {}
 
