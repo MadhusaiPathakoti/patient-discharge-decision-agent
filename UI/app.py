@@ -79,15 +79,6 @@ with st.form("patient_form"):
         )
 
     submitted = st.form_submit_button("🚀 Run Decision Intelligence")
-    # Real-time safety hints
-    if oxygen < 95:
-        st.warning("⚠️ Oxygen saturation is below normal range (95–100%).")
-
-    if heart_rate < 60 or heart_rate > 100:
-        st.warning("⚠️ Heart rate is outside normal range (60–100 bpm).")
-
-    if systolic_bp < 90 or systolic_bp > 120:
-        st.warning("⚠️ Systolic BP is outside normal range (90–120 mmHg).")
 
 # ===== API CALL =====
 if submitted:
