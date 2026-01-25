@@ -52,8 +52,14 @@ if submitted:
         "days_admitted": int(days),
         "previous_readmissions": int(prev)
     }
-
+    st.info("Backend may take up to 1 minute to wake up on first request.")
     with st.spinner("Analyzing patient data and running decision intelligence..."):
+        # Wake up backend (cold start prevention)
+        try:
+            requests.get("https://patient-discharge-decision-agent.onrender.com/", timeout=10)
+        except:
+            pass
+
         try:
             response = requests.post(BACKEND_URL, json=payload, timeout=120)
 

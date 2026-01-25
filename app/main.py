@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from app.api.v1.routes import router
 from app.core.startup import ensure_models
 from app.core.logger import setup_logger
@@ -23,6 +24,15 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# ===== ADD ROOT HEALTH ENDPOINT HERE =====
+@app.get("/")
+def root():
+    return {
+        "service": "Patient Discharge Decision Agent",
+        "status": "running",
+        "docs": "/docs"
+    }
+
 # CORS for UI
 app.add_middleware(
     CORSMiddleware,
@@ -32,4 +42,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# API routes
 app.include_router(router, prefix="/api/v1")
