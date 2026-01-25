@@ -20,6 +20,17 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+with st.expander("ℹ️ Normal Clinical Ranges (Reference)"):
+    st.markdown("""
+    **These are general reference ranges for adults (not medical advice):**
+
+    - **Age:** 18 – 100 years  
+    - **Oxygen Saturation (SpO₂):** 95 – 100 %  
+    - **Heart Rate:** 60 – 100 bpm  
+    - **Systolic Blood Pressure:** 90 – 120 mmHg  
+    - **Days Admitted:** ≥ 2 days (operational guideline)  
+    - **Previous Readmissions:** 0 – 1 (higher = increased risk)
+    """)
 
 st.divider()
 
@@ -30,16 +41,53 @@ with st.form("patient_form"):
     col1, col2 = st.columns(2)
 
     with col1:
-        age = st.number_input("Age", 18, 100, 45)
-        heart_rate = st.number_input("Heart Rate (bpm)", 40, 150, 85)
-        systolic_bp = st.number_input("Systolic BP (mmHg)", 70, 200, 120)
+        age = st.number_input(
+            "Age",
+            18, 100, 45,
+            help="Typical adult range: 18–100 years"
+        )
+
+        heart_rate = st.number_input(
+            "Heart Rate (bpm)",
+            40, 150, 85,
+            help="Normal resting heart rate: 60–100 bpm"
+        )
+
+        systolic_bp = st.number_input(
+            "Systolic BP (mmHg)",
+            70, 200, 120,
+            help="Normal systolic BP: 90–120 mmHg"
+        )
 
     with col2:
-        oxygen = st.number_input("Oxygen Saturation (%)", 70, 100, 95)
-        days = st.number_input("Days Admitted", 1, 60, 3)
-        prev = st.number_input("Previous Readmissions", 0, 10, 0)
+        oxygen = st.number_input(
+            "Oxygen Saturation (%)",
+            70, 100, 95,
+            help="Normal SpO₂: 95–100%"
+        )
+
+        days = st.number_input(
+            "Days Admitted",
+            1, 60, 3,
+            help="Operational guideline: ≥ 2 days preferred before discharge"
+        )
+
+        prev = st.number_input(
+            "Previous Readmissions",
+            0, 10, 0,
+            help="0–1 is typical; ≥ 2 indicates higher risk"
+        )
 
     submitted = st.form_submit_button("🚀 Run Decision Intelligence")
+    # Real-time safety hints
+    if oxygen < 95:
+        st.warning("⚠️ Oxygen saturation is below normal range (95–100%).")
+
+    if heart_rate < 60 or heart_rate > 100:
+        st.warning("⚠️ Heart rate is outside normal range (60–100 bpm).")
+
+    if systolic_bp < 90 or systolic_bp > 120:
+        st.warning("⚠️ Systolic BP is outside normal range (90–120 mmHg).")
 
 # ===== API CALL =====
 if submitted:
