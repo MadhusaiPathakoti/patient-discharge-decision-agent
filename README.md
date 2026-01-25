@@ -12,10 +12,10 @@
 ## 📸 Application Screenshots
 
 ### 🧾 Patient Input Form
-![Patient Input Form](screenshots/ui-input-form.png)
+![Patient Input Form](screenshots/UI_INPUT_FORM.png)
 
 ### 🚨 High-Risk Case — Escalation Decision
-![Escalation Decision](screenshots/ui-decision-escalate.png)
+![Escalation Decision](screenshots/UI_OUTPUT.png)
 
 # patient-discharge-decision-agent
 # Decision Intelligence Philosophy
