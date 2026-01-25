@@ -1,3 +1,14 @@
+## 🌐 Live Demo
+
+- **Backend API (FastAPI + Swagger UI):**  
+  https://patient-discharge-decision-agent.onrender.com/docs
+
+- **Backend Health Check:**  
+  https://patient-discharge-decision-agent.onrender.com/
+
+- **Interactive UI (Streamlit):**  
+  https://<YOUR-STREAMLIT-APP>.streamlit.app
+
 # patient-discharge-decision-agent
 # Decision Intelligence Philosophy
 
