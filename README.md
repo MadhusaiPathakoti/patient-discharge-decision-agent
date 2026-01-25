@@ -7,7 +7,7 @@
   https://patient-discharge-decision-agent.onrender.com/
 
 - **Interactive UI (Streamlit):**  
-  https://<YOUR-STREAMLIT-APP>.streamlit.app
+  [https://<YOUR-STREAMLIT-APP>.streamlit.app](https://patient-discharge-decision-agent.streamlit.app/)
 
 # patient-discharge-decision-agent
 # Decision Intelligence Philosophy
