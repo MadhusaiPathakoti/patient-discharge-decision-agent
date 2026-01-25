@@ -8,6 +8,14 @@
 
 - **Interactive UI (Streamlit):**  
   [https://<YOUR-STREAMLIT-APP>.streamlit.app](https://patient-discharge-decision-agent.streamlit.app/)
+  
+## 📸 Application Screenshots
+
+### 🧾 Patient Input Form
+![Patient Input Form](screenshots/ui-input-form.png)
+
+### 🚨 High-Risk Case — Escalation Decision
+![Escalation Decision](screenshots/ui-decision-escalate.png)
 
 # patient-discharge-decision-agent
 # Decision Intelligence Philosophy
