@@ -1,6 +1,6 @@
 import random
 import pandas as pd
-
+import random
 
 def generate_patient():
     age = random.randint(18, 90)
@@ -19,6 +19,8 @@ def generate_patient():
         risk_score += 3
     if heart_rate < 60 or heart_rate > 100:
         risk_score += 2
+    if heart_rate > 110:
+        risk_score += 2  # instead of +1
     if days_admitted < 2:
         risk_score += 2
     if previous_readmissions >= 2:
@@ -26,8 +28,8 @@ def generate_patient():
     if age > 70:
         risk_score += 1
 
-    # Convert risk score to readmission outcome
-    readmitted = 1 if risk_score >= 6 else 0
+    prob = min(0.95, risk_score / 10)  # scale to probability
+    readmitted = 1 if random.random() < prob else 0
 
     return {
         "age": age,
