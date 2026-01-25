@@ -55,7 +55,7 @@ if submitted:
 
     with st.spinner("Analyzing patient data and running decision intelligence..."):
         try:
-            response = requests.post(BACKEND_URL, json=payload, timeout=30)
+            response = requests.post(BACKEND_URL, json=payload, timeout=120)
 
             if response.status_code == 200:
                 data = response.json()
